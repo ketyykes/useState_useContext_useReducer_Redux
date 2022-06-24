@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { useState } from 'react'
+import { AddToDo, ListToDo } from './components/Todo'
+const App = () => {
+  //將listData state宣告在上層
+  const [listData, setListData] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <AddToDo setListData={setListData} />
+      <ListToDo listData={listData} setListData={setListData} />
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
