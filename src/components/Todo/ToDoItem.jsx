@@ -1,29 +1,32 @@
-import React from 'react'
-const ToDoItem = ({ id, content, setListData, done }) => {
+import React, { useContext } from 'react'
+import toDoContext from '../../store/toDoContext';
+import { deleteToDo, completeToDo } from '../../store/toDoActionCreator';
+const ToDoItem = ({ id, content, done }) => {
   const margin10 = { margin: "10px" };
   const displayFlex = { display: "flex", justifyContent: "center", alignItems: "center" };
   const displayBlock = { display: "block" };
-  // const deleteHandler = () => {
-  //   setListData((prev) => (prev.filter(item => item.id !== id)))
-  // }
-  // const completeHandler = (id) => {
-  //   setListData(prev => {
-  //     return prev.map(item => {
-  //       if (item.id === id) {
-  //         item.done = !item.done;
-  //       }
-  //       return item;
-  //     })
-  //   });
-  // }
+  const { listDispatch } = useContext(toDoContext);
+
   return (
     <li style={{ ...margin10, ...displayFlex }}>
-      <input type="checkbox" />
-      <p >
+      <input type="checkbox"
+        checked={done}
+        onChange={
+          () => listDispatch(completeToDo(id))
+        } />
+      <p style={
+        { textDecoration: done ? 'line-through' : 'none' }
+      }
+      >
         {content}
       </p>
-      <button style={{ ...margin10, ...displayBlock }}>delete</button>
-    </li>
+      <button style={{ ...margin10, ...displayBlock }}
+        onClick={
+          () => listDispatch(deleteToDo(id))
+        } >
+        delete
+      </button>
+    </li >
   )
 }
 export default ToDoItem

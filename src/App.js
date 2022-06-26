@@ -3,6 +3,7 @@ import { AddToDo, ListToDo } from './components/Todo';
 import toDoContext from './store/toDoContext';
 import toDoReducer from './store/toDoReducer';
 const App = () => {
+    //這邊給定了初始狀態將其發布
   const initialState = [
     {
       content: "測試",
@@ -15,10 +16,12 @@ const App = () => {
       done: false
     }
   ];
-  //將listData state宣告在上層
+
+  // 透過Provider將listData和dispatch發佈
   const [listData, listDispatch] = useReducer(toDoReducer, initialState);
   return (
     <div >
+      
       <toDoContext.Provider value={{ listData, listDispatch }}>
         <AddToDo />
         <ListToDo />
