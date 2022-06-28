@@ -1,12 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import ToDoItem from './ToDoItem';
-import toDoContext from '../../store/toDoContext';
+import { useSelector, useDispatch } from "react-redux";
 const ListToDo = () => {
   //in-line style的部分
   const margin0Auto = { width: "300px", margin: "0 auto" };
-  
-  //使用useContext提取listData
-  const { listData } = useContext(toDoContext);
+  const {listData} = useSelector((state) => state.toDoReducer);
   return (
     <ul style={margin0Auto} >
       {listData.map((data) => {
