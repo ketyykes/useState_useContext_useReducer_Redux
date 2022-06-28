@@ -3,8 +3,9 @@ import { combineReducers } from 'redux';
 import toDoReducer from './todoSlice';
 
 // const reducer = combineReducers({ toDoReducer })
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         toDoReducer
     }
 })
+export default store;
