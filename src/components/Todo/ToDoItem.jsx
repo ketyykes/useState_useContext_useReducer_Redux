@@ -1,4 +1,4 @@
-import { deleteToDo, completeToDo } from '../../store/todoSlice'
+import { deleteToDo, completeToDo } from '../../store/toDoSlice'
 import { useDispatch } from "react-redux";
 
 const ToDoItem = ({ id, content, done }) => {
